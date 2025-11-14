@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MicronWord</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Tutorial Modal -->
+  <div id="tutorialModal" class="modal">
+    <div class="modal-content">
+      <span id="closeTutorial" class="close">&times;</span>
+      <div id="tutorialSlides">
+        <div class="slide active">
+          <h2>🎯 Goal</h2>
+          <p>Guess the <strong>5-letter word</strong> in 6 tries to win the level and earn points.</p>
+        </div>
+        <div class="slide">
+          <h2>⌨️ How to Play</h2>
+          <p>Use your keyboard or the on-screen keys to enter a word.<br>Press <strong>Enter</strong> to submit your guess.</p>
+        </div>
+        <div class="slide">
+          <h2>🎨 Color Feedback</h2>
+          <p>
+            <span style="color:lime;">🟩 Green</span>: Correct letter & position<br>
+            <span style="color:gold;">🟨 Yellow</span>: Correct letter, wrong position<br>
+            <span style="color:gray;">⬜ Gray</span>: Not in the word
+          </p>
+        </div>
+        <div class="slide">
+          <h2>🕹️ Game Modes</h2>
+          <p>
+            <strong>Classic</strong>: Play at your own pace.<br>
+            <strong>Think Fast!!</strong>: Solve as many words as you can before the timer runs out!
+          </p>
+        </div>
+        <div class="slide">
+          <h2>⚙️ Difficulty</h2>
+          <p>
+            <strong>Easy</strong>: More hints.<br>
+            <strong>Medium</strong>: Standard challenge.<br>
+            <strong>Hard</strong>: No free hints.
+          </p>
+        </div>
+        <div class="slide">
+          <h2>💡 Hints</h2>
+          <p>
+            1 free letter hint per level.<br>
+            Extra hints cost <strong>20 points</strong> each.<br>
+            Use the <strong>📘 Word Hint</strong> button for a clue about the word’s meaning (first use is free, then 10 points).
+          </p>
+        </div>
+        <div class="slide">
+          <h2>🏁 Scoring & Level Up</h2>
+          <p>
+            Points depend on how quickly you guess:<br>
+            <strong>1st try: +50</strong>, <strong>2nd: +40</strong>, ..., <strong>6th: +10</strong><br>
+            Advance to the next level and keep your streak going!
+          </p>
+        </div>
+        <div class="slide">
+          <h2>🏆 Leaderboard</h2>
+          <p>
+            Your top scores are saved locally.<br>
+            Try to reach the leaderboard and beat your best!<br>
+            View the full leaderboard for both Classic and Think Fast!! modes, with Easy/Medium/Hard tabs.
+          </p>
+        </div>
+        <div class="slide">
+          <h2>🎵 Music & Sound</h2>
+          <p>
+            Enjoy background music and sound effects.<br>
+            Use the <strong>🔊 Toggle Music</strong> button and volume slider to control audio.
+          </p>
+        </div>
+      </div>      
+      <div class="tutorial-nav">
+        <button id="prevSlide">←</button>
+        <button id="nextSlide">→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tutorial Button -->
+  <button id="openTutorial" class="tutorial-button">❓ Tutorial</button>
+
+  <h1>MicronWord</h1>
+
+  <!-- Game Setup -->
+  <div class="input-wrapper">
+    <input type="text" id="userName" placeholder="Your name" />
+    <select id="gameMode">
+      <option value="classic" selected>Classic</option>
+      <option value="thinkfast">Think Fast!!</option>
+    </select>
+    <select id="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium" selected>Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    <button id="startGame">Start Game</button>
+  </div>
+
+  <!-- Inline Tutorial Section -->
+  <section id="inlineTutorial" class="tutorial-section">
+    <div class="slide active">
+      <h2>🎯 Goal</h2>
+      <p>Guess the <strong>5-letter word</strong> in 6 tries to win the level and earn points.</p>
+    </div>
+    <div class="slide">
+      <h2>⌨️ How to Play</h2>
+      <p>Use your keyboard or the on-screen keys to enter a word.<br>Press <strong>Enter</strong> to submit your guess.</p>
+    </div>
+    <div class="slide">
+      <h2>🎨 Color Feedback</h2>
+      <p>
+        <span style="color:lime;">🟩 Green</span>: Correct letter & position<br>
+        <span style="color:gold;">🟨 Yellow</span>: Correct letter, wrong position<br>
+        <span style="color:gray;">⬜ Gray</span>: Not in the word
+      </p>
+    </div>
+    <div class="slide">
+      <h2>🕹️ Game Modes</h2>
+      <p>
+        <strong>Classic</strong>: Play at your own pace.<br>
+        <strong>Think Fast!!</strong>: Solve as many words as you can before the timer runs out!
+      </p>
+    </div>
+    <div class="slide">
+      <h2>⚙️ Difficulty</h2>
+      <p>
+        <strong>Easy</strong>: More hints.<br>
+        <strong>Medium</strong>: Standard challenge.<br>
+        <strong>Hard</strong>: No free hints.
+      </p>
+    </div>
+    <div class="slide">
+      <h2>💡 Hints</h2>
+      <p>
+        1 free letter hint per level.<br>
+        Extra hints cost <strong>20 points</strong> each.<br>
+        Use the <strong>📘 Word Hint</strong> button for a clue about the word’s meaning (first use is free, then 10 points).
+      </p>
+    </div>
+    <div class="slide">
+      <h2>🏁 Scoring & Level Up</h2>
+      <p>
+        Points depend on how quickly you guess:<br>
+        <strong>1st try: +50</strong>, <strong>2nd: +40</strong>, ..., <strong>6th: +10</strong><br>
+        Advance to the next level and keep your streak going!
+      </p>
+    </div>
+    <div class="slide">
+      <h2>🏆 Leaderboard</h2>
+      <p>
+        Your top scores are saved locally.<br>
+        Try to reach the leaderboard and beat your best!<br>
+        View the full leaderboard for both Classic and Think Fast!! modes, with Easy/Medium/Hard tabs.
+      </p>
+    </div>
+    <div class="slide">
+    </div>
+  </section>  
+
+  <!-- Game Area -->
+
+  <div id="scoreBoard">Score: 0</div>
+  <div class="game-container">
+    <div id="countdownTimer" style="display:none;">⏱️ Think Fast!! Time Left: 180s</div>
+    <div class="game-main">
+      <div id="gameBoard"></div>
+
+      <div class="points-wrapper">
+        <div id="keyboard" class="keyboard"></div>
+      </div>
+      
+    </div>
+
+    <!-- Hint Section -->
+<div style="display: flex; gap: 10px;">
+  <button id="hintButton" type="button" style="display: none;">💡 Get Hint (1 left)</button>
+  <button id="wordHintButton" type="button" style="display: none;">📘 Word Hint (1 free)</button>
+</div>
+<div id="hintDisplay" style="display: none;"></div>
+
+
+  <!-- Sound Effects -->
+  <audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+  <audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
+  <audio id="sound-key" src="keypress.mp3" preload="auto"></audio>
+  <audio id="bg-music" src="background.mp3" preload="auto" loop></audio>
+
+  <!-- Level Popup -->
+  <div id="levelPopup" class="level-popup">Level 1</div>
+
+  <!-- Music Controls -->
+  <div id="musicControls">
+    <button id="toggleMusic">🔊 Toggle Music</button>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" />
+  </div>
+
+  <!-- Restart Button -->
+  <button id="restartGame">🔁 Restart Game</button>
+
+
+
+  <!-- Well Done/Very Good Popup -->
+<div id="popup" class="popup">
+  <h2 id="popupText"></h2>
+</div>
+
+
+<!-- Leaderboard Overlay -->
+<div id="leaderboardOverlay" class="overlay hidden">
+  <div class="leaderboard-wrapper">
+    <div id="leaderboardPopup" class="leaderboard-popup">
+      <h2>🏆 Top 5 Players</h2>
+      <div id="leaderboardContent"></div>
+      <button class="close-leaderboard-btn" onclick="closeLeaderboard()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- View Full Leaderboard Button -->
+<button id="viewFullLeaderboardBtn">📋 View Full Leaderboard</button>
+
+<!-- Full Leaderboard Modal with Difficulty Tabs -->
+<div id="fullLeaderboardModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span id="closeFullLeaderboard" class="close">&times;</span>
+
+    <!-- Leaderboard Content for Each Difficulty -->
+    <div id="fullLeaderboardContent">
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const closeFullLeaderboard = document.getElementById("closeFullLeaderboard");
+    const fullLeaderboardModal = document.getElementById("fullLeaderboardModal");
+
+    closeFullLeaderboard.addEventListener("click", () => {
+      fullLeaderboardModal.style.display = "none";
+    });
+
+    // Optional: close modal when clicking outside the modal content
+    window.addEventListener("click", (e) => {
+      if (e.target === fullLeaderboardModal) {
+        fullLeaderboardModal.style.display = "none";
+      }
+    });
+  });
+</script>
+
+
+  <!-- Game Logic -->
+  <script src="script.js"></script>
+  
+</body>
+</html>
+
+
+
